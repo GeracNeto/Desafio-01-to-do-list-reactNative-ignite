@@ -11,8 +11,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
-        paddingHorizontal: 12
-
+        paddingHorizontal: 12,
+        minHeight: 64
     },
     text: {
         color: '#F2F2F2',

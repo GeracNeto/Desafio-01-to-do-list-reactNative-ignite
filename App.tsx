@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { StatusBar, View } from 'react-native'
 
 import { Header } from './src/components/Header/Index'
@@ -10,6 +11,16 @@ import { styles } from './styles'
 
 export default function App() {
 
+  const [todos, setTodos] = useState<string[]>([])
+
+  function getTodo(todo: string){
+
+    setTodos([...todos, todo])
+
+    console.log(todos)
+
+
+  }
 
   return (
     <View style={styles.app}>
@@ -19,7 +30,9 @@ export default function App() {
         translucent
       />
       <Header />
-      <NewTask />
+      <NewTask 
+      onGetTodo={getTodo}
+      />
       <Info />
       <Todo />
       <Todo />
