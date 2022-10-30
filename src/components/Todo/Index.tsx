@@ -2,11 +2,15 @@ import { Text, View } from 'react-native'
 
 import { styles } from './style'
 
-import { Check, Trash } from 'phosphor-react-native'
+import { Trash } from 'phosphor-react-native'
 
 import { CheckBox } from '../CheckBox'
 
-export function Todo() {
+interface Props{
+    todo: string
+}
+
+export function Todo({ todo }: Props) {
 
     return (
         <View style={styles.todo}>
@@ -14,9 +18,9 @@ export function Todo() {
                 <CheckBox />
             </Text>
             <Text style={styles.text}>
-                Comprar alugma coisa
+                {todo}
             </Text>
-            <Trash size={24} color='#808080'/>
+            <Trash size={24} color='#808080' />
         </View>
     )
 }

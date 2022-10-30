@@ -1,4 +1,4 @@
-import { TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, TextInput, TouchableOpacity, View } from 'react-native'
 
 import { PlusCircle } from 'phosphor-react-native'
 
@@ -15,6 +15,10 @@ export function NewTask({onGetTodo}: Props) {
     const [newTodo, setNewTodo] = useState("")
 
     function createNewTodo(){
+
+        if (!newTodo) {
+            return Alert.alert("Insira uma tarefa")
+        }
 
         onGetTodo(newTodo)
 

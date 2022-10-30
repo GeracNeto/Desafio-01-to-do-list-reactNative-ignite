@@ -16,10 +16,6 @@ export default function App() {
   function getTodo(todo: string){
 
     setTodos([...todos, todo])
-
-    console.log(todos)
-
-
   }
 
   return (
@@ -34,8 +30,15 @@ export default function App() {
       onGetTodo={getTodo}
       />
       <Info />
-      <Todo />
-      <Todo />
+      {todos.length !== 0 ? todos.map(todo => (
+        <Todo
+        key={todo}
+        todo={todo}
+        />
+      )) : (
+        <Tasks />
+      ) }
+
     </View>
   )
 }
