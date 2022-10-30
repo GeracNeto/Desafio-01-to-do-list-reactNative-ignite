@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StatusBar, View } from 'react-native'
+import { FlatList, StatusBar, View } from 'react-native'
 
 import { Header } from './src/components/Header/Index'
 import { Info } from './src/components/Info'
@@ -13,7 +13,7 @@ export default function App() {
 
   const [todos, setTodos] = useState<string[]>([])
 
-  function getTodo(todo: string){
+  function getTodo(todo: string) {
 
     setTodos([...todos, todo])
   }
@@ -26,18 +26,24 @@ export default function App() {
         translucent
       />
       <Header />
-      <NewTask 
-      onGetTodo={getTodo}
+      <NewTask
+        onGetTodo={getTodo}
       />
       <Info />
-      {todos.length !== 0 ? todos.map(todo => (
-        <Todo
-        key={todo}
-        todo={todo}
+      {todos.length !== 0 ? (
+        <FlatList
+          data={todos}
+          keyExtractor={todo => todo}
+          renderItem={({ item }) => (
+            <Todo
+              key={item}
+              todo={item}
+            />
+          )}
         />
-      )) : (
+      ) : (
         <Tasks />
-      ) }
+      )}
 
     </View>
   )
