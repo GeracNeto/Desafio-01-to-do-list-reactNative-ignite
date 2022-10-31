@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { FlatList, StatusBar, View } from 'react-native'
 
 import { Header } from './src/components/Header/Index'
@@ -9,13 +10,30 @@ import { Todo } from './src/components/Todo/Index'
 
 import { styles } from './styles'
 
+import { ITask } from './src/components/NewTask/Index'
+
 export default function App() {
 
-  const [todos, setTodos] = useState<string[]>([])
+  const [todos, setTodos] = useState<ITask[]>([])
 
-  function getTodo(todo: string) {
+  function getTodo(todo: ITask) {
 
     setTodos([...todos, todo])
+  }
+
+  function deleteTask(id: string) {
+    const newTodo = todos.filter((todo) => todo.id !== id);
+
+    setTodos(newTodo);
+  }
+
+  function completedTask(id: string) {
+    const completedTask = todos.map(task => task.id === id ? {
+      ...task,
+      isComplete: !task.isComplete
+    } : task);
+    
+    setTodos(completedTask)
   }
 
   return (
@@ -29,15 +47,19 @@ export default function App() {
       <NewTask
         onGetTodo={getTodo}
       />
-      <Info />
+      <Info 
+      tasks={todos}
+      />
       {todos.length !== 0 ? (
         <FlatList
           data={todos}
-          keyExtractor={todo => todo}
+          keyExtractor={todo => todo.id}
           renderItem={({ item }) => (
             <Todo
-              key={item}
-              todo={item}
+              key={item.id}
+              task={item}
+              onDeleteTask={deleteTask}
+              onCompletedTask={completedTask}
             />
           )}
         />

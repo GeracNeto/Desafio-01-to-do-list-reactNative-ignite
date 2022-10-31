@@ -19,7 +19,8 @@
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
     "react-native-svg": "12.3.0",
-    "react-native-web": "~0.18.7"
+    "react-native-web": "~0.18.7",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

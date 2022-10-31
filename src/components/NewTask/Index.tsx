@@ -6,8 +6,16 @@ import { styles } from './styles'
 
 import { useState } from 'react'
 
+import { v4 as uuidv4 } from 'uuid';
+
+export interface ITask{
+    id: string;
+    task: string;
+    isComplete: boolean;
+}
+
 interface Props {
-    onGetTodo: (todo: string) => void
+    onGetTodo: (todo: ITask) => void
 }
 
 export function NewTask({onGetTodo}: Props) {
@@ -20,7 +28,13 @@ export function NewTask({onGetTodo}: Props) {
             return Alert.alert("Insira uma tarefa")
         }
 
-        onGetTodo(newTodo)
+        const newTask = {
+            id: uuidv4(),
+            task: newTodo,
+            isComplete: false
+        }
+
+        onGetTodo(newTask)
 
         setNewTodo("")
     }

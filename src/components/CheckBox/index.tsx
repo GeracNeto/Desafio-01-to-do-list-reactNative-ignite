@@ -1,12 +1,16 @@
 import { Check } from 'phosphor-react-native'
-import { TouchableOpacity } from 'react-native'
+import { View } from 'react-native'
 import { styles } from './styles'
 
-export function CheckBox(){
+interface Props {
+    checked: boolean;
+}
+
+export function CheckBox({ checked }: Props) {
 
     return (
-        <TouchableOpacity style={styles.checkbox}>
-            <Check color='#F2F2F2' size={12} weight='bold'/>
-        </TouchableOpacity>
+        <View style={styles.checkbox}>
+            {checked && <Check color='#F2F2F2' size={12} weight='bold' />}
+        </View>
     )
 }
