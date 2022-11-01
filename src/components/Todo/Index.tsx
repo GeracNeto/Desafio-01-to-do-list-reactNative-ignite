@@ -20,6 +20,8 @@ export function Todo({ task, onDeleteTask, onCompletedTask }: TaskProps) {
 
     const [checked, setChecked] = useState<boolean>(false)
 
+    const [trashPressed, setTrashPressed] = useState<boolean>(false)
+
     function handleChecked() {
 
         setChecked(!checked)
@@ -30,19 +32,23 @@ export function Todo({ task, onDeleteTask, onCompletedTask }: TaskProps) {
     return (
         <View style={styles.todo}>
             <TouchableOpacity
-            onPress={handleChecked}
+                onPress={handleChecked}
             >
                 <CheckBox
                     checked={checked}
                 />
             </TouchableOpacity>
-            <Text style={styles.text}>
+            <Text style={checked ? styles.textComplete : styles.text}>
                 {task.task}
             </Text>
             <TouchableOpacity
                 onPress={() => onDeleteTask(task.id)}
+                onPressIn={() => setTrashPressed(!trashPressed)}
             >
-                <Trash size={24} color='#808080' />
+                <Trash 
+                size={24} 
+                color={trashPressed ? '#E25858' : '#808080'} 
+                style={trashPressed ? styles.trashClicked : styles.trash}/>
             </TouchableOpacity>
         </View>
     )

@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 import { v4 as uuidv4 } from 'uuid';
 
-export interface ITask{
+export interface ITask {
     id: string;
     task: string;
     isComplete: boolean;
@@ -18,13 +18,17 @@ interface Props {
     onGetTodo: (todo: ITask) => void
 }
 
-export function NewTask({onGetTodo}: Props) {
+export function NewTask({ onGetTodo }: Props) {
 
     const [newTodo, setNewTodo] = useState("")
 
-    function createNewTodo(){
+    const [addTaskPressed, setAddTaskPressed] = useState<boolean>(false)
+    const [inputFocus, setInputFocus] = useState<boolean>(false)
+
+    function createNewTodo() {
 
         if (!newTodo) {
+            setAddTaskPressed(false)
             return Alert.alert("Insira uma tarefa")
         }
 
@@ -37,20 +41,23 @@ export function NewTask({onGetTodo}: Props) {
         onGetTodo(newTask)
 
         setNewTodo("")
+        setAddTaskPressed(false)
     }
 
     return (
         <View style={styles.newTask}>
             <TextInput
-                style={styles.inputTask}
+                style={inputFocus ? styles.inputTaskFocus : styles.inputTask}
                 placeholder='Adicione uma nova tarefa'
                 placeholderTextColor='#808080'
                 onChangeText={setNewTodo}
                 value={newTodo}
+                onFocus={() => setInputFocus(true)}
             />
-            <TouchableOpacity 
-            style={styles.addTask}
-            onPress={createNewTodo}
+            <TouchableOpacity
+                style={addTaskPressed ? styles.addTaskPressed : styles.addTask}
+                onPress={createNewTodo}
+                onPressIn={() => setAddTaskPressed(true)}
             >
                 <PlusCircle color='#F2F2F2' />
             </TouchableOpacity>

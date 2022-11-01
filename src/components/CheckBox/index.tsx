@@ -9,7 +9,7 @@ interface Props {
 export function CheckBox({ checked }: Props) {
 
     return (
-        <View style={styles.checkbox}>
+        <View style={checked ? styles.checkboxCompleted : styles.checkbox}>
             {checked && <Check color='#F2F2F2' size={12} weight='bold' />}
         </View>
     )

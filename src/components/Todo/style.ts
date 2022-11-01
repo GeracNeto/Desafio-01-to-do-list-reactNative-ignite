@@ -22,4 +22,20 @@ export const styles = StyleSheet.create({
         lineHeight: 20,
         width: 235,
     },
+    textComplete: {
+        color: '#808080',
+        fontSize: 14,
+        marginRight: 8,
+        marginLeft: 12,
+        lineHeight: 20,
+        width: 235,
+        textDecorationLine: "line-through"
+    },
+    trash: {
+        backgroundColor: 'transparent'
+    },
+    trashClicked: {
+        backgroundColor: '#333333',
+        borderRadius: 4
+    }
 })

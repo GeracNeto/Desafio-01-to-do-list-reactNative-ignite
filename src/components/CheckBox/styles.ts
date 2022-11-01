@@ -9,5 +9,13 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 24,
         height: 24
+    },
+    checkboxCompleted:{
+        backgroundColor: '#5E60CE',
+        borderRadius: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 24,
+        height: 24
     }
 })
